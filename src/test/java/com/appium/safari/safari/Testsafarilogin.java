@@ -27,7 +27,8 @@ dc.setCapability("reportDirectory", reportDirectory);
 dc.setCapability("reportFormat", reportFormat);
 dc.setCapability("testName", testName);
 ///
-dc.setCapability(MobileCapabilityType.PLATFORM_NAME, System.getProperty(""));
+dc.setCapability(MobileCapabilityType.PLATFORM_NAME, System.getProperty("PlatformName"));
+dc.setCapability(MobileCapabilityType.PLATFORM_VERSION, System.getProperty("PlatformVersion"));
 dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, "Appium");
 ////
 dc.setCapability(MobileCapabilityType.UDID, "4d0098134a4a217d");
