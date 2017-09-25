@@ -13,7 +13,7 @@ import org.junit.*;
 import java.net.URL;
 import java.net.MalformedURLException;
 
-public class safarilogin {
+public class Testsafarilogin {
 private String reportDirectory = "reports";
 private String reportFormat = "xml";
 private String testName = "Untitled";
