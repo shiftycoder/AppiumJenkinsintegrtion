@@ -37,14 +37,12 @@ dc.setCapability("testName", testName);
 PlatformVersion = System.getProperty("PlatformVersion");
 //PlatformVersion = "5.0.1";
 dc.setCapability(MobileCapabilityType.PLATFORM_NAME, System.getProperty("PlatformName"));
+
 dc.setCapability(MobileCapabilityType.PLATFORM_VERSION, PlatformVersion);
 dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, "Appium");
-dc.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-dc.setCapability("autoAcceptAlerts", "true");
-dc.setCapability("autoDismissAlerts", true);
 
 ////
-dc.setCapability(MobileCapabilityType.UDID, "QLF7N15505001010");
+dc.setCapability(MobileCapabilityType.UDID, System.getProperty("DeviceUDID"));
 dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "za.co.fourimobile.safarioutdoor.debug");
 dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "za.co.fourimobile.safarioutdoor.SplashActivity");
 driver = new AndroidDriver<AndroidElement>(new URL("http://localhost:4723/wd/hub"), dc);
