@@ -19,7 +19,6 @@ import java.net.MalformedURLException;
 
 public class Testsafarilogin {
 //	
-private Integer PlatformVersion = 6;
 //
 private String reportDirectory = "reports";
 private String reportFormat = "xml";
@@ -53,24 +52,24 @@ public void LoginTest() {
 
 //Clicking on skip to got o last page (could swipe but not all phones have 4 tutorial screens, and this will insure alld devices gets to last one)
  
-driver.findElement(By.xpath("//*[@text='Skip' and @width>0]")).click();
+driver.findElement(By.xpath("//*[@text='Skip']")).click();
 
-//if (driver.findElement(By.className("android.widget.RelativeLayout")).isDisplayed());
-	//{
-	//  driver.findElement(By.xpath("//*[@text='Skip' and @width>0]")).click();
-	//}
-
-if (Double.parseDouble(System.getProperty("PlatformVersion")) < PlatformVersion) { 
-	driver.findElement(By.xpath("//*[@text='Skip' and @width>0]")).click();
+//If the platform version is bellow 6 kick of the code (permissions not asked on <6)
+if (true)
+   { 
+	driver.findElement(By.xpath("//*[@text='Skip' and ./parent::*[./following-sibling::*[./*[@text='Share your know how or expertise\n" + 
+			" by answering quiz questions and \n" + 
+			"giving helpful tips to those who are \n" + 
+			"in need of valuable advice.']]]]")).click();
+	new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='icon' and ./parent::*[@id='menu_post']]")));
 	driver.findElement(By.xpath("//*[@id='icon' and ./parent::*[@id='menu_post']]")).click(); //clicking on Post, to show the sign in screen
-} else {
+   } 
+else
+   {
 	driver.findElement(By.xpath("//*[@text='Okay']")).click();
 	driver.findElement(By.xpath("//*[@text='Allow']")).click(); //If the permission doesnt ned to be allowed it will skip after a couple of seconds
 	driver.findElement(By.xpath("//*[@id='icon' and ./parent::*[@id='menu_post']]")).click(); //clicking on Post, to show the sign in screen
-}
-
-
-
+   }
 
 
 
@@ -79,8 +78,6 @@ new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(
 driver.findElement(By.xpath("//*[@text='Sign In']")).click(); 
 
 
-///////////
-
 driver.findElement(By.xpath("//*[@text and @id='edit_text']")).click();
 
 driver.findElement(By.xpath("//*[@text and @id='edit_text']")).sendKeys("saf1@saf1.com"); //enter email
@@ -88,9 +85,8 @@ driver.findElement(By.xpath("//*[@text and @id='edit_text']")).sendKeys("saf1@sa
 driver.findElement(By.xpath("//*[@id='edit_text' and ./following-sibling::*[@id='reveal_holder']]")).click();
 
 //enter password
-
 driver.findElement(By.xpath("//*[@id='edit_text' and ./following-sibling::*[@id='reveal_holder']]")).sendKeys("qwerty");
-/////////
+
 
 driver.findElement(By.xpath("//*[@id='login_button']")).click();
 
@@ -104,12 +100,6 @@ new WebDriverWait(driver, 30).until(ExpectedConditions.presenceOfElementLocated(
 public void tearDown() {
 
    driver.quit();
-
-   
-
-   
-
-    
 
    
 
