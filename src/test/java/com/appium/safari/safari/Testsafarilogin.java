@@ -23,6 +23,7 @@ public class Testsafarilogin {
 private String reportDirectory = "reports";
 private String reportFormat = "xml";
 private String testName = "Untitled";
+private String PlatformVersion = "";
 protected AndroidDriver<AndroidElement> driver = null;
 
 DesiredCapabilities dc = new DesiredCapabilities();
@@ -33,8 +34,9 @@ dc.setCapability("reportDirectory", reportDirectory);
 dc.setCapability("reportFormat", reportFormat);
 dc.setCapability("testName", testName);
 ///
+PlatformVersion = System.getProperty("PlatformVersion");
 dc.setCapability(MobileCapabilityType.PLATFORM_NAME, System.getProperty("PlatformName"));
-dc.setCapability(MobileCapabilityType.PLATFORM_VERSION, System.getProperty("PlatformVersion"));
+dc.setCapability(MobileCapabilityType.PLATFORM_VERSION, PlatformVersion);
 dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, "Appium");
 dc.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
 dc.setCapability("autoAcceptAlerts", "true");
@@ -55,7 +57,7 @@ public void LoginTest() {
 driver.findElement(By.xpath("//*[@text='Skip']")).click();
 
 //If the platform version is bellow 6 kick of the code (permissions not asked on <6)
-if (true)
+if (PlatformVersion.compareTo("6") < 0)
    { 
 	driver.findElement(By.xpath("//*[@text='Skip' and ./parent::*[./following-sibling::*[./*[@text='Share your know how or expertise\n" + 
 			" by answering quiz questions and \n" + 
